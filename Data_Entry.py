@@ -35,6 +35,9 @@ def show_main_functionality(service, db_name):
                 payment_options = fetch_data_from_db('SELECT mode_of_payment FROM mode_of_payment', db_name)
                 stage_options = fetch_data_from_db('SELECT stage FROM stages', db_name)
                 existing_vendors = fetch_data_from_db('SELECT distinct vendor FROM purchases', db_name)
+
+                st.header("🧾 Purchase Data Entry Form", divider=True)
+
                 vendor_option = st.selectbox("Vendor Type:", ["Select Existing Vendor", "Enter New Vendor"],
                                              on_change=lambda: clear_input('vendor'))
                 mode_of_payment = st.selectbox("Select mode of payment:", payment_options,
@@ -44,7 +47,6 @@ def show_main_functionality(service, db_name):
 
                 # Form for user data input
                 with st.form("purchases_data_entry", clear_on_submit=True):
-                    st.header("🧾 Purchase Data Entry Form")
                     # Create two columns
                     col1, col2, col3 = st.columns(3)
 

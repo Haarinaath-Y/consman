@@ -338,22 +338,6 @@ def clear_input(key):
         del st.session_state[key]
 
 
-# Helper function to reset inputs
-def reset_inputs():
-    st.session_state["reset_item_name"] = ""
-    st.session_state["reset_item_qty"] = 0.0
-    st.session_state["reset_unit"] = "Nos"
-    st.session_state["reset_vendor"] = ""
-    st.session_state["reset_stage"] = ""
-    st.session_state["reset_category"] = ""
-    st.session_state["reset_date"] = datetime.date.today()
-    st.session_state["reset_purchase_amount"] = 0
-    st.session_state["reset_mode_of_payment"] = "No Payment"
-    st.session_state["reset_paid_amount"] = 0
-    st.session_state["reset_paid_by"] = ""
-    st.session_state["reset_notes"] = ""
-
-
 def display_loading_message(text, duration=1, element_type='text'):
     """Updates a placeholder with the specified Streamlit element for a specified duration.
 
@@ -724,10 +708,10 @@ def purchase_amounts(database_name):
 
                 # Highlight entire row for Grand Total
                 if row['Category'] == 'Grand Total':
-                    styles = ['background-color: #DAA520'] * len(row)  # Gold for Grand Total
+                    styles = ['background-color: #93c47d'] * len(row)  # Gold for Grand Total
                 # Highlight entire row for Percentage
                 elif row['Category'] == 'Percentage':
-                    styles = ['background-color: #FF0000'] * len(row)  # Indigo for Percentage
+                    styles = ['background-color: #FF4B4B'] * len(row)  # Indigo for Percentage
 
                 return styles
 
@@ -735,8 +719,8 @@ def purchase_amounts(database_name):
                 # Create a default style
                 styles = pd.DataFrame('', index=s.index, columns=s.columns)
 
-                styles.iloc[:, -1] = ['background-color: #FF0000']
-                styles.iloc[:, -2] = ['background-color: #DAA520']
+                styles.iloc[:, -1] = ['background-color: #FF4B4B']
+                styles.iloc[:, -2] = ['background-color: #93c47d']
                 return styles
 
             # Function to highlight the last value of the second-to-last column
@@ -748,7 +732,7 @@ def purchase_amounts(database_name):
                 last_index_in_df = s.index[-1]
 
                 # Apply color to the last value of the second-to-last column
-                styles.iloc[last_index_in_df, -2] = 'background-color: #FF0000'  # Change color (Tomato)
+                styles.iloc[last_index_in_df, -2] = 'background-color: #FF4B4B'  # Change color (Tomato)
 
                 return styles
 
